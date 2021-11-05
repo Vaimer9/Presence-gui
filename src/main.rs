@@ -6,17 +6,9 @@ struct Window {
 }
 
 
-fn get_text(ui: &mut Ui, mut text: String) {
-
-    ui.heading("My egui Application");
-    ui.horizontal(|ui| {
-        ui.label("Your name: ");
-        ui.text_edit_singleline(&mut text);
-    });
-}
 
 impl Window {
-    fn gett_text(&mut self, ui: &mut Ui) {
+    fn get_text(&mut self, ui: &mut Ui) {
         ui.heading("My egui Application");
         ui.horizontal(|ui| {
             ui.label("Your name: ");
@@ -33,7 +25,7 @@ impl App for Window {
     ) {
         // let mut text = String::new();
         CentralPanel::default().show(ctx, |ui| {
-            self.gett_text(ui)
+            self.get_text(ui)
         });
 
     }
