@@ -1,26 +1,5 @@
 // For some refference :(
 
-/*
-fn put_number(&mut self, ui: &mut Ui) {
-        ui.label(format!("{}", self.age));
-        
-        ui.horizontal(|ui| {
-            if ui.button("Add").clicked() {
-                self.age += 1;
-            }
-
-            if ui.button("Subtract").clicked() {
-                self.age -= 1;
-            }
-        
-            if ui.button("Reset").clicked() {
-                self.age = 0;
-            }
-
-        });
-         
-    }
-*/
 
 mod presence;
 
