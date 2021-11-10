@@ -22,7 +22,6 @@ impl Window {
         }
     }
 
-
     // Where all the widgets / Components will be declared and stored
     // Only take in 2 Params: &mut self and &mut Ui
 
@@ -34,16 +33,15 @@ impl Window {
         });
         if ui.button("Set").clicked() {
             self.stay = true;
-            
         }
         if ui.button("Stop").clicked() {
             self.stay = false;
         }
-        presence::start_connection(&self.details, self.stay);
 
+        if self.stay == true {
+            presence::start_connection(&self.details);
+        }
     }
-
-    
 }
 
 impl App for Window {
@@ -67,8 +65,9 @@ impl App for Window {
 
 fn main() {
 
+    // let native_options = NativeOptions::default();
     let app = Window::new();
-    let native_options = NativeOptions::default(); 
+    let native_options = NativeOptions::default();
     run_native(Box::new(app), native_options);
 
 }
