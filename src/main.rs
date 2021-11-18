@@ -5,6 +5,7 @@ mod presence;
 
 use eframe::{egui::CentralPanel, epi::App, run_native, egui::Ui};
 use eframe::NativeOptions;
+use std::thread;
 
 
 
@@ -38,8 +39,17 @@ impl Window {
             self.stay = false;
         }
 
+
+        // This is where the rpc will start
+        // TODO: Make a struct method to fill in the void
+
         if self.stay == true {
-            presence::start_connection(&self.details);
+            let details = self.details.clone();
+            thread::spawn( move || {
+                presence::start_connection(&details);
+            });
+        } else {
+             
         }
     }
 }
@@ -55,6 +65,7 @@ impl App for Window {
             self.put_text(ui);
         });
 
+
     }
 
     fn name(&self) -> &str {
@@ -64,10 +75,8 @@ impl App for Window {
 
 
 fn main() {
-
-    // let native_options = NativeOptions::default();
     let app = Window::new();
     let native_options = NativeOptions::default();
     run_native(Box::new(app), native_options);
-
 }
+
